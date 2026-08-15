@@ -28,6 +28,6 @@ output "codestarconnections_hosts_status" {
 }
 output "codestarconnections_hosts_vpc_configuration" {
   description = "Map of vpc_configuration values across all codestarconnections_hosts, keyed the same as var.codestarconnections_hosts"
-  value       = { for k, v in aws_codestarconnections_host.codestarconnections_hosts : k => v.vpc_configuration if v.vpc_configuration != null && length(v.vpc_configuration) > 0 }
+  value       = { for k, v in aws_codestarconnections_host.codestarconnections_hosts : k => one(v.vpc_configuration) if v.vpc_configuration != null && length(v.vpc_configuration) > 0 }
 }
 
